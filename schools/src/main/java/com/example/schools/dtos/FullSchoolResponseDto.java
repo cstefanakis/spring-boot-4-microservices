@@ -12,5 +12,5 @@ import java.util.List;
 public class FullSchoolResponseDto {
     private String name;
     private String email;
-    private List<Student> students;
+    private List<StudentDto> students;
 }

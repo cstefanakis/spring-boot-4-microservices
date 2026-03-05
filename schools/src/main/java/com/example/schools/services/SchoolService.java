@@ -2,7 +2,7 @@ package com.example.schools.services;
 
 import com.example.schools.client.StudentClient;
 import com.example.schools.dtos.FullSchoolResponseDto;
-import com.example.schools.dtos.Student;
+import com.example.schools.dtos.StudentDto;
 import com.example.schools.models.School;
 import com.example.schools.repositories.SchoolRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ public class SchoolService {
                         .name("NOT_FOUND")
                         .email("NOT_FOUND")
                         .build());
-        List<Student> students = studentClient.getStudentsBySchool(schoolId);
+        List<StudentDto> students = studentClient.getStudentsBySchool(schoolId);
 
         return FullSchoolResponseDto.builder()
                 .name(school.getName())

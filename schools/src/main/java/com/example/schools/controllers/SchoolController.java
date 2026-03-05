@@ -3,7 +3,6 @@ package com.example.schools.controllers;
 import com.example.schools.dtos.FullSchoolResponseDto;
 import com.example.schools.models.School;
 import com.example.schools.services.SchoolService;
-import feign.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/schools")
 @RequiredArgsConstructor
-public class StudentController {
+public class SchoolController {
 
     private final SchoolService schoolService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createSchool(School school){
+    public void createSchool(@RequestBody School school){
         schoolService.createSchool(school);
     }
 
@@ -30,7 +29,8 @@ public class StudentController {
     }
 
     @GetMapping("/with-students/{school-id}")
-    public ResponseEntity<FullSchoolResponseDto> getSchoolWithStudentsBySchoolId(@PathVariable ("school-id") Integer schoolId){
+    public ResponseEntity<FullSchoolResponseDto> getSchoolWithStudentsBySchoolId(
+            @PathVariable ("school-id") Integer schoolId){
         return ResponseEntity.ok(schoolService.getSchoolWithAllStudents(schoolId));
     }
 }
